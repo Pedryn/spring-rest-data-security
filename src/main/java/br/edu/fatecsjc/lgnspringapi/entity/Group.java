@@ -2,14 +2,12 @@ package br.edu.fatecsjc.lgnspringapi.entity;
 
 import jakarta.persistence.*;
 import lombok.*;
-import org.hibernate.annotations.LazyCollection;
-import org.hibernate.annotations.LazyCollectionOption;
 
 import java.util.List;
 
 @Getter
 @Setter
-@ToString
+@ToString(exclude = "members")
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
