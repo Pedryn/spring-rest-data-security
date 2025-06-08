@@ -36,7 +36,6 @@ class MemberMarathonTest {
 
   @Test
   void shouldInitializeEntityWithBuilder() {
-    // Then
     assertThat(memberMarathon).isNotNull();
     assertThat(memberMarathon.getId()).isEqualTo(1L);
     assertThat(memberMarathon.getName()).isEqualTo("Neymar Jr.");
@@ -47,61 +46,48 @@ class MemberMarathonTest {
 
   @Test
   void shouldSetAndGetId() {
-    // When
     memberMarathon.setId(99L);
-
-    // Then
     assertThat(memberMarathon.getId()).isEqualTo(99L);
   }
 
   @Test
   void shouldSetAndGetName() {
-    // When
     memberMarathon.setName("Cristiano Ronaldo");
-
-    // Then
     assertThat(memberMarathon.getName()).isEqualTo("Cristiano Ronaldo");
   }
 
   @Test
   void shouldSetAndGetTime() {
-    // When
     memberMarathon.setTime(8000L);
-
-    // Then
     assertThat(memberMarathon.getTime()).isEqualTo(8000L);
   }
 
   @Test
   void shouldSetAndGetMember() {
-    // Given
     Member newMember = Member.builder()
         .id(2L)
         .name("Pedro Antonio")
         .age(30)
         .build();
 
-    // When
+
     memberMarathon.setMember(newMember);
 
-    // Then
     assertThat(memberMarathon.getMember()).isEqualTo(newMember);
     assertThat(memberMarathon.getMember().getName()).isEqualTo("Pedro Antonio");
   }
 
   @Test
   void shouldSetAndGetMarathon() {
-    // Given
+
     Marathon newMarathon = Marathon.builder()
         .id(2L)
         .name("Meia Maratona SJC")
         .date("2025-05-18")
         .build();
 
-    // When
     memberMarathon.setMarathon(newMarathon);
 
-    // Then
     assertThat(memberMarathon.getMarathon()).isEqualTo(newMarathon);
     assertThat(memberMarathon.getMarathon().getName()).isEqualTo("Meia Maratona SJC");
   }

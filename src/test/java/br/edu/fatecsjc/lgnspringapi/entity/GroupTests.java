@@ -37,7 +37,6 @@ class GroupTest {
 
   @Test
   void shouldInitializeEntityWithBuilder() {
-    // Then
     assertThat(group).isNotNull();
     assertThat(group.getId()).isEqualTo(1L);
     assertThat(group.getName()).isEqualTo("Grupo da amizade é tudo");
@@ -48,65 +47,47 @@ class GroupTest {
 
   @Test
   void shouldSetAndGetId() {
-    // When
     group.setId(99L);
-
-    // Then
     assertThat(group.getId()).isEqualTo(99L);
   }
 
   @Test
   void shouldSetAndGetName() {
-    // When
+
     group.setName("Novo Nome");
 
-    // Then
     assertThat(group.getName()).isEqualTo("Novo Nome");
   }
 
   @Test
   void shouldAddMemberToList() {
-    // Given
     Member newMember = Member.builder()
         .id(3L)
         .name("André")
         .age(22)
         .build();
-
-    // When
     group.getMembers().add(newMember);
-
-    // Then
     assertThat(group.getMembers()).hasSize(3);
     assertThat(group.getMembers().get(2).getName()).isEqualTo("André");
   }
 
   @Test
   void shouldRemoveMemberFromList() {
-    // When
     group.getMembers().remove(member1);
-
-    // Then
     assertThat(group.getMembers()).hasSize(1);
     assertThat(group.getMembers().contains(member1)).isFalse();
   }
 
   @Test
   void shouldToStringExcludeMembersDueToAnnotation() {
-    // When
     String toString = group.toString();
-
-    // Then
     assertThat(toString).contains("name=Grupo da amizade é tudo");
     assertThat(toString).doesNotContain("members");
   }
 
   @Test
   void shouldDefaultMembersListBeInitialized() {
-    // Given
     Group emptyGroup = new Group();
-
-    // Then
     assertThat(emptyGroup.getMembers()).isNotNull();
     assertThat(emptyGroup.getMembers()).isEmpty();
   }

@@ -36,4 +36,45 @@ public class UserRepositoryTest {
     assertThat(found.get().getLastName()).isEqualTo("User");
   }
 
+  @Test
+  void testFindByEmailNotFound() {
+    Optional<User> found = repository.findByEmail("notfound@example.com");
+    assertThat(found).isNotPresent();
+  }
+
+  @Test
+  void testSaveAndUpdateUser() {
+    User user = new User();
+    user.setEmail("update@example.com");
+    user.setFirstName("First");
+    user.setLastName("Last");
+    user.setPassword("pass");
+    user.setRole(Role.USER);
+
+    User saved = repository.save(user);
+
+    saved.setFirstName("Updated");
+    repository.save(saved);
+
+    Optional<User> found = repository.findByEmail("update@example.com");
+    assertThat(found).isPresent();
+    assertThat(found.get().getFirstName()).isEqualTo("Updated");
+  }
+
+  @Test
+  void testDeleteUser() {
+    User user = new User();
+    user.setEmail("delete@example.com");
+    user.setFirstName("ToDelete");
+    user.setLastName("User");
+    user.setPassword("pass");
+    user.setRole(Role.USER);
+
+    User saved = repository.save(user);
+    repository.delete(saved);
+
+    Optional<User> found = repository.findByEmail("delete@example.com");
+    assertThat(found).isNotPresent();
+  }
+
 }

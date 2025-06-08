@@ -14,7 +14,7 @@ class MemberTest {
   void setUp() {
     group = Group.builder()
         .id(1L)
-        .name("Grupo Legal")
+        .name("Grupo Revelação")
         .build();
 
     member = Member.builder()
@@ -31,7 +31,7 @@ class MemberTest {
     assertThat(member.getId()).isEqualTo(1L);
     assertThat(member.getName()).isEqualTo("Neymar Jr.");
     assertThat(member.getAge()).isEqualTo(25);
-    assertThat(member.getGroup().getName()).isEqualTo("Grupo Legal");
+    assertThat(member.getGroup().getName()).isEqualTo("Grupo Revelação");
   }
 
   @Test
@@ -60,13 +60,13 @@ class MemberTest {
     // Given
     Group newGroup = Group.builder()
         .id(2L)
-        .name("Novo Grupo")
+        .name("Grupo Dominó")
         .build();
 
     member.setGroup(newGroup);
 
     assertThat(member.getGroup()).isEqualTo(newGroup);
-    assertThat(member.getGroup().getName()).isEqualTo("Novo Grupo");
+    assertThat(member.getGroup().getName()).isEqualTo("Grupo Dominó");
   }
 
   @Test
