@@ -23,8 +23,8 @@ class OrganizationTest {
 
     marathon2 = Marathon.builder()
         .id(2L)
-        .name("Rio Marathon")
-        .date("2025-07-20")
+        .name("Circuito Oscar Fila")
+        .date("2025-03-25")
         .build();
 
     organization = Organization.builder()
@@ -58,7 +58,7 @@ class OrganizationTest {
     assertThat(organization.getHostCountry()).isEqualTo("Brazil");
     assertThat(organization.getMarathons()).hasSize(2);
     assertThat(organization.getMarathons().get(0).getName()).isEqualTo("Meia Maratona SJC");
-    assertThat(organization.getMarathons().get(1).getName()).isEqualTo("Rio Marathon");
+    assertThat(organization.getMarathons().get(1).getName()).isEqualTo("Circuito Oscar Fila");
   }
 
   @Test

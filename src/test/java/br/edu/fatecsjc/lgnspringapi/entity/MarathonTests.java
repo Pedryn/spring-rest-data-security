@@ -24,13 +24,13 @@ class MarathonTest {
     memberMarathon1 = MemberMarathon.builder()
         .id(1L)
         .name("Neymar Jr.")
-        .time(7200L) // time: 2:10 hours in seconds
+        .time(7200L) // time: 2 hours in seconds
         .build();
 
     memberMarathon2 = MemberMarathon.builder()
         .id(2L)
         .name("Cristiano Ronaldo")
-        .time(7800L) // time: 2h13 hours in seconds
+        .time(7800L) // time: 2h10 hours in seconds
         .build();
 
     marathon = Marathon.builder()

@@ -28,7 +28,7 @@ class MemberMarathonTest {
     memberMarathon = MemberMarathon.builder()
         .id(1L)
         .name("Neymar Jr.")
-        .time(7200L) // 2 horas em segundos
+        .time(7200L) 
         .member(member)
         .marathon(marathon)
         .build();
@@ -77,7 +77,7 @@ class MemberMarathonTest {
     // Given
     Member newMember = Member.builder()
         .id(2L)
-        .name("Carlos Souza")
+        .name("Pedro Antonio")
         .age(30)
         .build();
 
@@ -86,7 +86,7 @@ class MemberMarathonTest {
 
     // Then
     assertThat(memberMarathon.getMember()).isEqualTo(newMember);
-    assertThat(memberMarathon.getMember().getName()).isEqualTo("Carlos Souza");
+    assertThat(memberMarathon.getMember().getName()).isEqualTo("Pedro Antonio");
   }
 
   @Test
@@ -94,8 +94,8 @@ class MemberMarathonTest {
     // Given
     Marathon newMarathon = Marathon.builder()
         .id(2L)
-        .name("Rio Marathon")
-        .date("2025-07-20")
+        .name("Meia Maratona SJC")
+        .date("2025-05-18")
         .build();
 
     // When
@@ -103,6 +103,6 @@ class MemberMarathonTest {
 
     // Then
     assertThat(memberMarathon.getMarathon()).isEqualTo(newMarathon);
-    assertThat(memberMarathon.getMarathon().getName()).isEqualTo("Rio Marathon");
+    assertThat(memberMarathon.getMarathon().getName()).isEqualTo("Meia Maratona SJC");
   }
 }
