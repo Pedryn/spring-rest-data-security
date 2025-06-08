@@ -25,4 +25,21 @@ public class MemberMarathonRepositoryTest {
 
     assertThat(found).isPresent();
   }
+
+  @Test
+  void testDeleteMemberMarathon() {
+    MemberMarathon mm = new MemberMarathon();
+    MemberMarathon saved = repository.save(mm);
+
+    repository.delete(saved);
+
+    Optional<MemberMarathon> found = repository.findById(saved.getId());
+    assertThat(found).isNotPresent();
+  }
+
+  @Test
+  void testFindByIdNotFound() {
+    Optional<MemberMarathon> found = repository.findById(-1L);
+    assertThat(found).isNotPresent();
+  }
 }
