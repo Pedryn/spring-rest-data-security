@@ -74,6 +74,16 @@ class ApplicationConfigTest {
   }
 
   @Test
+  @DisplayName("PasswordEncoder não deve validar senha errada")
+  void shouldNotMatchWrongPassword() {
+    PasswordEncoder encoder = applicationConfig.passwordEncoder();
+    String rawPassword = "senha-certa";
+    String encodedPassword = encoder.encode(rawPassword);
+
+    assertFalse(encoder.matches("senha-errada", encodedPassword));
+  }
+
+  @Test
   @DisplayName("Deve retornar um AuthenticationProvider não nulo")
   void shouldReturnAuthenticationProvider() {
     AuthenticationProvider authProvider = applicationConfig.authenticationProvider();

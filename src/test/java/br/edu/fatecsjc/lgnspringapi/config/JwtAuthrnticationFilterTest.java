@@ -141,4 +141,72 @@ class JwtAuthenticationFilterTest {
     verify(filterChain).doFilter(request, response);
     assertNull(SecurityContextHolder.getContext().getAuthentication());
   }
+
+  @Test
+  void shouldNotAuthenticateWhenTokenIsExpiredOrRevoked() throws ServletException, IOException {
+    String token = "expiredToken";
+    String userEmail = "user@example.com";
+
+    when(request.getServletPath()).thenReturn("/api/test");
+    when(request.getHeader("Authorization")).thenReturn("Bearer " + token);
+    when(jwtService.extractUsername(token)).thenReturn(userEmail);
+
+    UserDetails userDetails = User.builder()
+        .username(userEmail)
+        .password("password")
+        .roles("USER")
+        .build();
+
+    when(userDetailsService.loadUserByUsername(userEmail)).thenReturn(userDetails);
+    when(jwtService.isTokenValid(token, userDetails)).thenReturn(true);
+    when(tokenRepository.findByToken(token))
+        .thenReturn(Optional.of(br.edu.fatecsjc.lgnspringapi.entity.Token.builder()
+            .expired(true)
+            .revoked(false)
+            .build()));
+
+    jwtAuthenticationFilter.doFilterInternal(request, response, filterChain);
+
+    verify(filterChain).doFilter(request, response);
+    assertNull(SecurityContextHolder.getContext().getAuthentication());
+  }
+
+  @Test
+  void shouldNotAuthenticateWhenTokenNotFound() throws ServletException, IOException {
+    String token = "notFoundToken";
+    String userEmail = "user@example.com";
+
+    when(request.getServletPath()).thenReturn("/api/test");
+    when(request.getHeader("Authorization")).thenReturn("Bearer " + token);
+    when(jwtService.extractUsername(token)).thenReturn(userEmail);
+
+    UserDetails userDetails = User.builder()
+        .username(userEmail)
+        .password("password")
+        .roles("USER")
+        .build();
+
+    when(userDetailsService.loadUserByUsername(userEmail)).thenReturn(userDetails);
+    when(jwtService.isTokenValid(token, userDetails)).thenReturn(true);
+    when(tokenRepository.findByToken(token)).thenReturn(Optional.empty());
+
+    jwtAuthenticationFilter.doFilterInternal(request, response, filterChain);
+
+    verify(filterChain).doFilter(request, response);
+    assertNull(SecurityContextHolder.getContext().getAuthentication());
+  }
+
+  @Test
+  void shouldSkipWhenExtractUsernameReturnsNull() throws ServletException, IOException {
+    String token = "tokenWithNullUsername";
+
+    when(request.getServletPath()).thenReturn("/api/test");
+    when(request.getHeader("Authorization")).thenReturn("Bearer " + token);
+    when(jwtService.extractUsername(token)).thenReturn(null);
+
+    jwtAuthenticationFilter.doFilterInternal(request, response, filterChain);
+
+    verify(filterChain).doFilter(request, response);
+    assertNull(SecurityContextHolder.getContext().getAuthentication());
+  }
 }
