@@ -17,7 +17,7 @@ class OrganizationTest {
   void setUp() {
     marathon1 = Marathon.builder()
         .id(1L)
-        .name("São Paulo Marathon")
+        .name("Meia Maratona SJC")
         .date("2025-06-15")
         .build();
 
@@ -57,7 +57,7 @@ class OrganizationTest {
     assertThat(organization.getInstitutionName()).isEqualTo("Red Cross Institution");
     assertThat(organization.getHostCountry()).isEqualTo("Brazil");
     assertThat(organization.getMarathons()).hasSize(2);
-    assertThat(organization.getMarathons().get(0).getName()).isEqualTo("São Paulo Marathon");
+    assertThat(organization.getMarathons().get(0).getName()).isEqualTo("Meia Maratona SJC");
     assertThat(organization.getMarathons().get(1).getName()).isEqualTo("Rio Marathon");
   }
 

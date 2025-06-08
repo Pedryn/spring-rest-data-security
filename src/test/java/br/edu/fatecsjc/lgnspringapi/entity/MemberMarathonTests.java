@@ -15,19 +15,19 @@ class MemberMarathonTest {
   void setUp() {
     member = Member.builder()
         .id(1L)
-        .name("João Silva")
+        .name("Neymar Jr.")
         .age(25)
         .build();
 
     marathon = Marathon.builder()
         .id(1L)
-        .name("São Paulo Marathon")
+        .name("Meia Maratona SJC")
         .date("2025-06-15")
         .build();
 
     memberMarathon = MemberMarathon.builder()
         .id(1L)
-        .name("João Silva")
+        .name("Neymar Jr.")
         .time(7200L) // 2 horas em segundos
         .member(member)
         .marathon(marathon)
@@ -39,10 +39,10 @@ class MemberMarathonTest {
     // Then
     assertThat(memberMarathon).isNotNull();
     assertThat(memberMarathon.getId()).isEqualTo(1L);
-    assertThat(memberMarathon.getName()).isEqualTo("João Silva");
+    assertThat(memberMarathon.getName()).isEqualTo("Neymar Jr.");
     assertThat(memberMarathon.getTime()).isEqualTo(7200L);
-    assertThat(memberMarathon.getMember().getName()).isEqualTo("João Silva");
-    assertThat(memberMarathon.getMarathon().getName()).isEqualTo("São Paulo Marathon");
+    assertThat(memberMarathon.getMember().getName()).isEqualTo("Neymar Jr.");
+    assertThat(memberMarathon.getMarathon().getName()).isEqualTo("Meia Maratona SJC");
   }
 
   @Test
@@ -57,10 +57,10 @@ class MemberMarathonTest {
   @Test
   void shouldSetAndGetName() {
     // When
-    memberMarathon.setName("Maria Oliveira");
+    memberMarathon.setName("Cristiano Ronaldo");
 
     // Then
-    assertThat(memberMarathon.getName()).isEqualTo("Maria Oliveira");
+    assertThat(memberMarathon.getName()).isEqualTo("Cristiano Ronaldo");
   }
 
   @Test

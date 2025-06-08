@@ -18,19 +18,19 @@ class GroupTest {
   void setUp() {
     member1 = Member.builder()
         .id(1L)
-        .name("João")
-        .age(25)
+        .name("Pedro")
+        .age(20)
         .build();
 
     member2 = Member.builder()
         .id(2L)
-        .name("Maria")
-        .age(30)
+        .name("Ana Clara")
+        .age(18)
         .build();
 
     group = Group.builder()
         .id(1L)
-        .name("Grupo Legal")
+        .name("Grupo da amizade é tudo")
         .members(new java.util.ArrayList<>(List.of(member1, member2)))
         .build();
   }
@@ -40,10 +40,10 @@ class GroupTest {
     // Then
     assertThat(group).isNotNull();
     assertThat(group.getId()).isEqualTo(1L);
-    assertThat(group.getName()).isEqualTo("Grupo Legal");
+    assertThat(group.getName()).isEqualTo("Grupo da amizade é tudo");
     assertThat(group.getMembers()).hasSize(2);
-    assertThat(group.getMembers().get(0).getName()).isEqualTo("João");
-    assertThat(group.getMembers().get(1).getName()).isEqualTo("Maria");
+    assertThat(group.getMembers().get(0).getName()).isEqualTo("Pedro");
+    assertThat(group.getMembers().get(1).getName()).isEqualTo("Ana Clara");
   }
 
   @Test
@@ -69,8 +69,8 @@ class GroupTest {
     // Given
     Member newMember = Member.builder()
         .id(3L)
-        .name("Carlos")
-        .age(28)
+        .name("André")
+        .age(22)
         .build();
 
     // When
@@ -78,7 +78,7 @@ class GroupTest {
 
     // Then
     assertThat(group.getMembers()).hasSize(3);
-    assertThat(group.getMembers().get(2).getName()).isEqualTo("Carlos");
+    assertThat(group.getMembers().get(2).getName()).isEqualTo("André");
   }
 
   @Test
@@ -97,7 +97,7 @@ class GroupTest {
     String toString = group.toString();
 
     // Then
-    assertThat(toString).contains("name=Grupo Legal");
+    assertThat(toString).contains("name=Grupo da amizade é tudo");
     assertThat(toString).doesNotContain("members");
   }
 

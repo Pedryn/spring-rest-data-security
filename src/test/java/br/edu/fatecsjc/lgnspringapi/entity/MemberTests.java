@@ -19,7 +19,7 @@ class MemberTest {
 
     member = Member.builder()
         .id(1L)
-        .name("João Silva")
+        .name("Neymar Jr.")
         .age(25)
         .group(group)
         .build();
@@ -29,7 +29,7 @@ class MemberTest {
   void shouldInitializeEntityWithBuilder() {
     assertThat(member).isNotNull();
     assertThat(member.getId()).isEqualTo(1L);
-    assertThat(member.getName()).isEqualTo("João Silva");
+    assertThat(member.getName()).isEqualTo("Neymar Jr.");
     assertThat(member.getAge()).isEqualTo(25);
     assertThat(member.getGroup().getName()).isEqualTo("Grupo Legal");
   }
@@ -43,9 +43,9 @@ class MemberTest {
 
   @Test
   void shouldSetAndGetName() {
-    member.setName("Maria Oliveira");
+    member.setName("Cristiano Ronaldo");
 
-    assertThat(member.getName()).isEqualTo("Maria Oliveira");
+    assertThat(member.getName()).isEqualTo("Cristiano Ronaldo");
   }
 
   @Test
@@ -73,7 +73,7 @@ class MemberTest {
   void shouldToStringExcludeGroupDueToAnnotation() {
     String toString = member.toString();
 
-    assertThat(toString).contains("name=João Silva");
+    assertThat(toString).contains("name=Neymar Jr.");
     assertThat(toString).doesNotContain("group=");
   }
 }

@@ -18,25 +18,25 @@ class MarathonTest {
   void setUp() {
     organization = Organization.builder()
         .id(1L)
-        .name("Red Cross")
+        .name("Guerreiros de Esparta")
         .build();
 
     memberMarathon1 = MemberMarathon.builder()
         .id(1L)
-        .name("João Silva")
-        .time(7200L) // 2 horas em segundos
+        .name("Neymar Jr.")
+        .time(7800L) // time: 2:10 hours in seconds
         .build();
 
     memberMarathon2 = MemberMarathon.builder()
         .id(2L)
-        .name("Maria Oliveira")
-        .time(7800L) // 2h10m em segundos
+        .name("Cristiano Ronaldo")
+        .time(8000L) // time: 2h13 hours in seconds
         .build();
 
     marathon = Marathon.builder()
         .id(1L)
-        .name("São Paulo Marathon")
-        .date("2025-06-15")
+        .name("Meia Maratona SJC")
+        .date("2025-05-18")
         .organization(organization)
         .memberMarathons(new java.util.ArrayList<>(List.of(memberMarathon1, memberMarathon2)))
         .build();
@@ -46,11 +46,11 @@ class MarathonTest {
   void shouldInitializeEntityWithBuilder() {
     assertThat(marathon).isNotNull();
     assertThat(marathon.getId()).isEqualTo(1L);
-    assertThat(marathon.getName()).isEqualTo("São Paulo Marathon");
-    assertThat(marathon.getDate()).isEqualTo("2025-06-15");
-    assertThat(marathon.getOrganization().getName()).isEqualTo("Red Cross");
+    assertThat(marathon.getName()).isEqualTo("Meia Maratona SJC");
+    assertThat(marathon.getDate()).isEqualTo("2025-05-18");
+    assertThat(marathon.getOrganization().getName()).isEqualTo("Guerreiros de Esparta");
     assertThat(marathon.getMemberMarathons()).hasSize(2);
-    assertThat(marathon.getMemberMarathons().get(0).getName()).isEqualTo("João Silva");
+    assertThat(marathon.getMemberMarathons().get(0).getName()).isEqualTo("Neymar Jr.");
     assertThat(marathon.getMemberMarathons().get(1).getTime()).isEqualTo(7800L);
   }
 
@@ -62,41 +62,41 @@ class MarathonTest {
 
   @Test
   void shouldSetAndGetName() {
-    marathon.setName("Rio Marathon");
-    assertThat(marathon.getName()).isEqualTo("Rio Marathon");
+    marathon.setName("Circuito Oscar Fila");
+    assertThat(marathon.getName()).isEqualTo("Circuito Oscar Fila");
   }
 
   @Test
   void shouldSetAndGetDate() {
-    marathon.setDate("2024-12-31");
-    assertThat(marathon.getDate()).isEqualTo("2024-12-31");
+    marathon.setDate("2025-03-25");
+    assertThat(marathon.getDate()).isEqualTo("2025-03-25");
   }
 
   @Test
   void shouldSetAndGetOrganization() {
     Organization newOrg = Organization.builder()
         .id(2L)
-        .name("Green Peace")
+        .name("Amigos de Jacareí")
         .build();
 
     marathon.setOrganization(newOrg);
 
     assertThat(marathon.getOrganization()).isEqualTo(newOrg);
-    assertThat(marathon.getOrganization().getName()).isEqualTo("Green Peace");
+    assertThat(marathon.getOrganization().getName()).isEqualTo("Amigos de Jacareí");
   }
 
   @Test
   void shouldAddMemberMarathonToList() {
     MemberMarathon newMember = MemberMarathon.builder()
         .id(3L)
-        .name("Carlos Souza")
+        .name("Pedro Antonio")
         .time(8000L)
         .build();
 
     marathon.getMemberMarathons().add(newMember);
 
     assertThat(marathon.getMemberMarathons()).hasSize(3);
-    assertThat(marathon.getMemberMarathons().get(2).getName()).isEqualTo("Carlos Souza");
+    assertThat(marathon.getMemberMarathons().get(2).getName()).isEqualTo("Pedro Antonio");
   }
 
   @Test

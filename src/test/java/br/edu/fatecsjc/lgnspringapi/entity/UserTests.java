@@ -14,10 +14,10 @@ class UserTest {
   void setUp() {
     user = User.builder()
         .id(1L)
-        .firstName("John")
-        .lastName("Doe")
-        .email("john@example.com")
-        .password("secret")
+        .firstName("Mike")
+        .lastName("Tayson")
+        .email("mike@example.com")
+        .password("champofufc")
         .role(Role.ADMIN)
         .build();
   }
@@ -26,10 +26,10 @@ class UserTest {
   void shouldInitializeEntityWithBuilder() {
     assertThat(user).isNotNull();
     assertThat(user.getId()).isEqualTo(1L);
-    assertThat(user.getFirstName()).isEqualTo("John");
-    assertThat(user.getLastName()).isEqualTo("Doe");
-    assertThat(user.getEmail()).isEqualTo("john@example.com");
-    assertThat(user.getPassword()).isEqualTo("secret");
+    assertThat(user.getFirstName()).isEqualTo("Mike");
+    assertThat(user.getLastName()).isEqualTo("Tayson");
+    assertThat(user.getEmail()).isEqualTo("mike@example.com");
+    assertThat(user.getPassword()).isEqualTo("champofufc");
     assertThat(user.getRole()).isEqualTo(Role.ADMIN);
   }
 
@@ -65,12 +65,12 @@ class UserTest {
 
   @Test
   void getUsername_shouldReturnEmail() {
-    assertThat(user.getUsername()).isEqualTo("john@example.com");
+    assertThat(user.getUsername()).isEqualTo("mike@example.com");
   }
 
   @Test
   void getPassword_shouldReturnStoredPassword() {
-    assertThat(user.getPassword()).isEqualTo("secret");
+    assertThat(user.getPassword()).isEqualTo("champofufc");
   }
 
   @Test
