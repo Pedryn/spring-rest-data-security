@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
+@Data
 @Getter
 @Setter
 @ToString(exclude = "members")
@@ -25,5 +26,13 @@ public class Group {
     @JsonManagedReference
     @Builder.Default
     private List<Member> members = new java.util.ArrayList<>();
-    
+
+    public List<Member> getMembers() {
+        if (members == null) {
+            members = new java.util.ArrayList<>();
+        }
+        return members;
+    }    
+
 }
+

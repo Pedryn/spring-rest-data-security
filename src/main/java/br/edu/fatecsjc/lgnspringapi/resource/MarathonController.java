@@ -57,7 +57,6 @@ public class MarathonController {
           m.setId(dto.getId());
           m.setName(dto.getName());
           m.setDate(dto.getDate());
-          // você pode querer carregar a entidade organizacao para setar aqui
           return m;
         }).orElse(null)
         : null;

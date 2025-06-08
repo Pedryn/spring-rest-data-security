@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.*;
 
+@Data
 @Getter
 @Setter
 @ToString(exclude = "group")

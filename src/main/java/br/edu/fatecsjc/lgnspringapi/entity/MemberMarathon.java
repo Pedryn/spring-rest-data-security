@@ -18,6 +18,9 @@ public class MemberMarathon {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private Long id;
 
+  private String name;
+  private Long time;
+
   @ManyToOne
   @JoinColumn(name = "member_id")
   private Member member;
